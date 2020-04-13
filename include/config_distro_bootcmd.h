@@ -67,6 +67,27 @@
 	BOOT_TARGET_DEVICES_references_MMC_without_CONFIG_CMD_MMC
 #endif
 
+#ifdef CONFIG_CMD_SF
+#define BOOTENV_SHARED_SF \
+		"sf_boot=if sf probe ${devnum}; then " \
+			"sf read ${scriptaddr} ${distro_bootpart} && "\
+			"source ${scriptaddr}; " \
+		"fi\0"
+#define BOOTENV_DEV_SF(devtypeu, devtypel, instance, bootpart) \
+	"bootcmd_" #devtypel #instance "=" \
+		"devnum=" #instance "; " \
+		"distro_bootpart=" #bootpart "; " \
+		"run " #devtypel "_boot\0"
+#define BOOTENV_DEV_NAME_SF(devtypeu, devtypel, instance, bootpart) \
+	#devtypel #instance " "
+#else
+#define BOOTENV_SHARED_MMC
+#define BOOTENV_DEV_SF \
+	BOOT_TARGET_DEVICES_references_SF_without_CONFIG_CMD_SF
+#define BOOTENV_DEV_NAME_SF \
+	BOOT_TARGET_DEVICES_references_SF_without_CONFIG_CMD_SF
+#endif
+
 #ifdef CONFIG_CMD_UBIFS
 #define BOOTENV_SHARED_UBIFS \
 	"ubifs_boot=" \
@@ -408,6 +429,7 @@
 #define BOOTENV \
 	BOOTENV_SHARED_HOST \
 	BOOTENV_SHARED_MMC \
+	BOOTENV_SHARED_SF \
 	BOOTENV_SHARED_PCI \
 	BOOTENV_SHARED_USB \
 	BOOTENV_SHARED_SATA \
