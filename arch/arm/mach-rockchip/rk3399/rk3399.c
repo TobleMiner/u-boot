@@ -164,6 +164,10 @@ void board_debug_uart_init(void)
 }
 #endif
 
+__weak void rk_spl_board_init(void)
+{
+}
+
 #if defined(CONFIG_SPL_BUILD) && !defined(CONFIG_TPL_BUILD)
 const char *spl_decode_boot_device(u32 boot_device)
 {
@@ -269,5 +273,13 @@ void spl_board_init(void)
 	if (regulators_enable_boot_on(false))
 		debug("%s: Cannot enable boot on regulator\n", __func__);
 #endif
+	rk_spl_board_init();
+}
+#endif
+
+#if defined(CONFIG_TPL_BUILD)
+void spl_board_init(void)
+{
+	rk_spl_board_init();
 }
 #endif
