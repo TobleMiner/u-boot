@@ -19,6 +19,24 @@ config TARGET_EVB_RK3399
 	  with full function and physical connectors support like Type-C ports,
 	  USB.0 host ports, LVDS, JTAG, MAC, SD card, HDMI, USB-to-serial...
 
+config TARGET_PINEBOOK_PRO_RK3399
+	bool "Pine64 Pinebook Pro laptop"
+	help
+	  Pinebook Pro is a laptop produced by Pine64. Key features:
+
+	   * Rockchip RK3399
+	   * 4GB Dual-Channel LPDDR3
+	   * SD card slot
+	   * eMMC
+	   * 128Mb SPI Flash
+	   * M.2 M-Key slot with 4 PCIe lanes
+	   * AP2566 WiFI/BT module
+	   * 14" Full-HD eDP screen
+	   * DP out via Type-C alternate mode
+	   * USB 3.0, 2.0
+	   * USB Type C power and data
+	   * DC 5V/3A
+
 config TARGET_PUMA_RK3399
 	bool "Theobroma Systems RK3399-Q7 (Puma)"
 	help
@@ -144,6 +162,7 @@ endif # BOOTCOUNT_LIMIT
 
 source "board/firefly/roc-pc-rk3399/Kconfig"
 source "board/google/gru/Kconfig"
+source "board/pine64/pinebook-pro_rk3399/Kconfig"
 source "board/pine64/rockpro64_rk3399/Kconfig"
 source "board/rockchip/evb_rk3399/Kconfig"
 source "board/theobroma-systems/puma_rk3399/Kconfig"

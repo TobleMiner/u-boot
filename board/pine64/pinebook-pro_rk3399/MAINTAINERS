@@ -1,0 +1,6 @@
+PINEBOOK-PRO
+M:      Tobias Schramm <t.schramm@manjaro.org>
+S:      Maintained
+F:      board/pine64/pinbook-pro_rk3399
+F:      include/configs/pinebook-pro_rk3399.h
+F:      configs/pinebook-pro_defconfig
