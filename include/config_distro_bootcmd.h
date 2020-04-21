@@ -398,13 +398,13 @@
 	BOOT_TARGET_DEVICES_references_PXE_without_CONFIG_CMD_DHCP_or_PXE
 #endif
 
-#define BOOTENV_DEV_NAME(devtypeu, devtypel, instance) \
-	BOOTENV_DEV_NAME_##devtypeu(devtypeu, devtypel, instance)
+#define BOOTENV_DEV_NAME(devtypeu, devtypel, instance, ...) \
+	BOOTENV_DEV_NAME_##devtypeu(devtypeu, devtypel, instance, ##__VA_ARGS__)
 #define BOOTENV_BOOT_TARGETS \
 	"boot_targets=" BOOT_TARGET_DEVICES(BOOTENV_DEV_NAME) "\0"
 
-#define BOOTENV_DEV(devtypeu, devtypel, instance) \
-	BOOTENV_DEV_##devtypeu(devtypeu, devtypel, instance)
+#define BOOTENV_DEV(devtypeu, devtypel, instance, ...) \
+	BOOTENV_DEV_##devtypeu(devtypeu, devtypel, instance, ##__VA_ARGS__)
 #define BOOTENV \
 	BOOTENV_SHARED_HOST \
 	BOOTENV_SHARED_MMC \
